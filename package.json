@@ -1,7 +1,7 @@
 {
   "name": "IonicFormManager",
   "version": "0.0.1",
-  "author": "Ionic Framework",
+  "author": "Santiago Valencia",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
@@ -54,5 +54,5 @@
   "karma-jasmine-html-reporter": "~2.1.0",
   "typescript": "~5.2.0" 
 },
-  "description": "An Ionic project"
+  "description": "technical test"
 }
