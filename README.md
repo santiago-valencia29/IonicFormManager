@@ -37,4 +37,7 @@ npm install
 ionic serve
 ```
 
+### APK de prueba
+En el repositorio se ha subido el archivo app-debug.apk para probar el desarrollo en un dispositivo Android.
+
 Autor: Santiago Valencia
