@@ -1,0 +1,93 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Panel Principal</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()" color="medium">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  @if (userData(); as user) {
+    <div class="user-profile-section">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <div class="profile-card">
+              <div class="profile-header">
+                <div class="profile-avatar">
+                  <ion-icon name="business"></ion-icon>
+                </div>
+                <div class="profile-info">
+                  <h2 class="profile-title">Bienvenido</h2>
+                  <p class="profile-name"><ion-icon name="person"></ion-icon> {{ user.title }}</p>
+                  <p class="profile-document"><ion-icon name="id-card"></ion-icon> {{ user.documentNumber }}</p>
+                  <p class="profile-email"><ion-icon name="mail"></ion-icon> {{ user.email }}</p>
+                  <p class="profile-id"><ion-icon name="key"></ion-icon> {{ user.id }}</p>
+                </div>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div class="menu-section">
+      <h3 class="section-title">Gestión de Solicitudes</h3>
+      
+      <ion-grid>
+        <ion-row>
+          @for (option of menuOptions(); track option.id) {
+            <ion-col size="12" size-sm="6" class="menu-item-col">
+              <div class="menu-item" [ngClass]="'menu-item-' + option.color">
+                <div class="menu-item-icon" [ngClass]="'menu-item-icon-' + option.color">
+                  <ion-icon [name]="option.icon"></ion-icon>
+                </div>
+                <div class="menu-item-content">
+                  <h3 class="menu-item-title">{{ option.title }}</h3>
+                  <p class="menu-item-description">{{ option.description }}</p>
+                </div>
+              </div>
+            </ion-col>
+          }
+        </ion-row>
+      </ion-grid>
+    </div>
+    
+    <div class="stats-section">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <div class="stat-card">
+              <div class="stat-icon">
+                <ion-icon name="clipboard"></ion-icon>
+              </div>
+              <div class="stat-content">
+                <span class="stat-value">5</span>
+                <span class="stat-label">Solicitudes</span>
+              </div>
+            </div>
+          </ion-col>
+          <ion-col size="6">
+            <div class="stat-card">
+              <div class="stat-icon stat-icon-secondary">
+                <ion-icon name="checkmark-circle"></ion-icon>
+              </div>
+              <div class="stat-content">
+                <span class="stat-value">2</span>
+                <span class="stat-label">Completadas</span>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  } @else {
+    <div class="loading-container">
+      <ion-spinner name="circular"></ion-spinner>
+      <p>Cargando información...</p>
+    </div>
+  }
+</ion-content>

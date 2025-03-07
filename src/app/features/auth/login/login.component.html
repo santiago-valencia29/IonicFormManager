@@ -1,0 +1,63 @@
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-xs="12" size-sm="10" size-md="8" size-lg="6" size-xl="5">
+        <div class="login-card">
+          <div class="logo-section">
+            <div class="logo-container">
+              <ion-icon name="document-lock" class="logo-icon"></ion-icon>
+            </div>
+            <h1 class="welcome-text">Bienvenido</h1>
+            <p class="subtitle-text">Ingrese sus credenciales para continuar</p>
+          </div>
+
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+            <!-- Número de documento -->
+            <ion-item class="custom-input">
+              <ion-input labelPlacement="stacked" label="Número de documento" placeholder="Ingrese su documento"
+                type="tel" formControlName="documentNumber" inputmode="numeric">
+                <ion-icon slot="start" name="id-card" aria-hidden="true"></ion-icon>
+              </ion-input>
+            </ion-item>
+            <div class="error-message"
+              *ngIf="loginForm.get('documentNumber')?.touched && loginForm.get('documentNumber')?.invalid">
+              {{ getErrorMessage('documentNumber') }}
+            </div>
+
+            <!-- Email -->
+            <ion-item class="custom-input">
+              <ion-input labelPlacement="stacked" label="Correo electrónico" placeholder="email@domain.com" type="email"
+                formControlName="email" inputmode="email">
+                <ion-icon slot="start" name="mail" aria-hidden="true"></ion-icon>
+              </ion-input>
+            </ion-item>
+            <div class="error-message" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+              {{ getErrorMessage('email') }}
+            </div>
+
+            <!-- Contraseña -->
+            <ion-item class="custom-input">
+              <ion-input [type]="passwordVisible ? 'text' : 'password'" labelPlacement="stacked" label="Contraseña"
+                placeholder="Ingrese su contraseña" formControlName="password">
+                <ion-icon slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
+                <ion-button fill="clear" slot="end" (click)="togglePasswordVisibility()" aria-label="Mostrar/Ocultar">
+                  <ion-icon slot="icon-only" [name]="passwordVisible ? 'eye-off' : 'eye'"></ion-icon>
+                </ion-button>
+              </ion-input>
+            </ion-item>
+            <div class="error-message" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+              {{ getErrorMessage('password') }}
+            </div>
+
+            <!-- Botón de login -->
+            <ion-button expand="block" type="submit" class="login-button" strong="true">
+              <ion-icon name="log-in-outline" slot="start"></ion-icon>
+              Iniciar Sesión
+            </ion-button>
+          </form>
+
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
